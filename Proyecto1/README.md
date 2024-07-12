@@ -57,7 +57,7 @@ Realiza una comparacion de que tanto cambiaron las probabilidades antes y despue
 
 ## Solucion
 - **Configuraciones**
-    - **Requisito #1**
+    - **Requisito #1**  
         Configuracion de ejemplo #1
         ```
         d1 = {
@@ -124,7 +124,7 @@ Realiza una comparacion de que tanto cambiaron las probabilidades antes y despue
         }
         ```
 
-    - **Requisito #2**
+    - **Requisito #2**  
         Configuracion de ejemplo
         ```
         d2 = {
@@ -149,7 +149,7 @@ Realiza una comparacion de que tanto cambiaron las probabilidades antes y despue
         }
         ```
 
-    - **Requisito #3**
+    - **Requisito #3**  
         Configuracion de ejemplo
         ```
         d3 = {
@@ -188,7 +188,7 @@ Realiza una comparacion de que tanto cambiaron las probabilidades antes y despue
         }
         ```
 
-    - **Requisito #4**
+    - **Requisito #4**  
         Configuracion de ejemplo
         ```
         d4 = {
@@ -221,7 +221,7 @@ Realiza una comparacion de que tanto cambiaron las probabilidades antes y despue
         }
         ```
 
-    - **Requisito #5**
+    - **Requisito #5**  
         Configuracion de ejemplo
         ```
         d5 = {
@@ -264,9 +264,84 @@ Realiza una comparacion de que tanto cambiaron las probabilidades antes y despue
             "random_rows": 1000
         }
         ```
+
+        ```
+        d6 = {
+            "ds": "dataset6",
+            "columns": [
+                {
+                    "name": "id",
+                    "type": "unique"
+                },
+                {
+                    "name": "department",
+                    "type": "category",
+                    "values": ["Sales", "Engineering", "Support", "Administration"]
+                },
+                {
+                    "name": "location",
+                    "type": "category",
+                    "values": ["New York", "San Francisco", "Austin", "Seattle"]
+                },
+                {
+                    "name": "status",
+                    "type": "category",
+                    "values": ["Full-time", "Part-time", "Contract", "Intern"]
+                },
+                {
+                    "name": "salary",
+                    "type": "numeric",
+                    "values": {
+                        "min": 30000,
+                        "max": 120000
+                    }
+                },
+                {
+                    "name": "experience_years",
+                    "type": "numeric",
+                    "values": {
+                        "min": 0,
+                        "max": 40
+                    }
+                },
+                {
+                    "name": "bonus",
+                    "type": "numeric",
+                    "values": {
+                        "min": 0,
+                        "max": 15000,
+                        "mean": 7500,
+                        "std": 3000
+                    }
+                },
+                {
+                    "name": "height",
+                    "type": "numeric",
+                    "values": {
+                        "min": 1.5,
+                        "max": 2.1,
+                        "mean": 1.75,
+                        "std": 0.1
+                    }
+                },
+                {
+                    "name": "rating",
+                    "type": "numeric",
+                    "values": {
+                        "min": 1,
+                        "max": 5,
+                        "mean": 3,
+                        "std": 1
+                    }
+                }
+            ],
+            "random": True,
+            "random_rows": 1000
+        }
+        ```
     
 - **Consideraciones**
-    - **Requisito #1**
+    - **Requisito #1**  
         1. Crear los dataframes ✅: Esto lo realiza la funcion generate_df.
         2. Si random = False, crear los dataframes en base al valor maximo de la columna con mayor cantidad de valores ✅.
         
@@ -297,7 +372,7 @@ Realiza una comparacion de que tanto cambiaron las probabilidades antes y despue
         def generate_unique_random_values(size):
             return [uuid.uuid4().hex[:16] for _ in range(size)]
         ```
-    - **Requisito #2**
+    - **Requisito #2**  
         1. Valores con el tipo foreign deben tomar los valores de la columna del dataframe al que hacen referencia ✅: Esto lo realiza la funcion del inciso c.
         2. Como random = False. sigue las reglas anteriores del requisito #1 pero las columnas foreign no se toman en cuenta para el calculo del valor mayor ✅: Esto tambien lo realiza la funcion calc_greater.
         3. Retornar error en caso que no existan tanto el dataframe como la columna a la que hacen referencia ✅. 
@@ -322,7 +397,7 @@ Realiza una comparacion de que tanto cambiaron las probabilidades antes y despue
         def generate_foreign_random_values(serie, size):
             return np.random.choice(serie.drop_duplicates(), size)  
         ```
-     - **Requisito #3**
+     - **Requisito #3**  
         1. Si random = True, los valores de cantidad de registros los tomara de random_rows (Obligatorio cuando random = True) ✅: Esto lo realiza la funcion calc_greater del requisito #1.
         2. Si la configuracion para tipos numericos contiene nada mas min y max  entonces utilizar una función de distribución normal para generar los valores dentro del rango especificado; sino utilizar la funcion normal truncada para la generacion de dichos datos ✅.
         ```
@@ -340,7 +415,7 @@ Realiza una comparacion de que tanto cambiaron las probabilidades antes y despue
                 values = np.round(values, 3)
             return values 
         ```
-    - **Requisito #4**
+    - **Requisito #4**  
         1. La implementacion debera lucir de la siguiente manera ✅: 
         ```
             d1 = {} # Toda la configuración pertinente para el dataset que definas
@@ -539,7 +614,7 @@ Realiza una comparacion de que tanto cambiaron las probabilidades antes y despue
         # Reordenar considerando el orden original (conf_list)
         return  [j for i in conf_list for j in df_arr if i['ds'] == j.name] # Esto se encuentra en la funcion build_dataframes
         ``` 
-    - **Requisito #5**
+    - **Requisito #5**  
         1. La implementacion deberia lucir de la siguiente manera ✅: 
         ```
         d1 = {} # Toda la configuración pertinente para el dataset que
