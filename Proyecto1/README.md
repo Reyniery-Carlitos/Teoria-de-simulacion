@@ -1,10 +1,10 @@
 # Proyecto #1: Simulador datasets
 
-**Nombre:** Carlos Reyniery Rubio Dominguez
-**Cuenta:** 20201003545
-**Catedratico:** Ing. Uayeb Caballero
-**Clase:** Teoria de simulacion
-**Fecha:** 12/07/2024
+**Nombre:** Carlos Reyniery Rubio Dominguez  
+**Cuenta:** 20201003545  
+**Catedratico:** Ing. Uayeb Caballero  
+**Clase:** Teoria de simulacion  
+**Fecha:** 12/07/2024  
 
 ## Estructura
 - **Importar modulos**
@@ -343,16 +343,11 @@ Realiza una comparacion de que tanto cambiaron las probabilidades antes y despue
     - **Requisito #4**
         1. La implementacion debera lucir de la siguiente manera ✅: 
         ```
-            d1 = {} # Toda la configuración pertinente para el dataset q
-            ue definas
-            d2 = {} # Toda la configuración pertinente para el dataset q
-            ue definas
-            d3 = {} # Toda la configuración pertinente para el dataset q
-            ue definas
-            d4 = {} # Toda la configuración pertinente para el dataset q
-            ue definas
-            d5 = {} # Toda la configuración pertinente para el dataset q
-            ue definas
+            d1 = {} # Toda la configuración pertinente para el dataset que definas
+            d2 = {} # Toda la configuración pertinente para el dataset que definas
+            d3 = {} # Toda la configuración pertinente para el dataset que definas
+            d4 = {} # Toda la configuración pertinente para el dataset que definas
+            d5 = {} # Toda la configuración pertinente para el dataset que definas
 
             conf_list = [d5, d2, d4, d1, d3]
             dataframe_list = build_dataframes(conf_list)    
@@ -610,18 +605,14 @@ Realiza una comparacion de que tanto cambiaron las probabilidades antes y despue
 
         grouped_combination.columns =  category_cols + ['count']
         grouped_combination['prob'] = grouped_combination['count'] / dataframe_list[4].shape[0]
+        grouped_combination.sort_values(by='count', ascending=False)
+        # End section analisis de columnas categoricas
 
-        area_subarea = get_categorical_dataset_simulated(simulation_extended,category_cols, 100000)
+
+        final_simulation = get_categorical_dataset_simulated(simulation_extended,category_cols, 100000)
         for nc in numeric_cols:
-            # Por cada valor numerico, se generan los demas registros aleatoriamente
-            # simulated = copia de los 100k registros generados aleatorios
-            # simulation_extended = dataframe al cual se le esta realizando el analisis. En este caso este dataframe se creo desde el inicio con 1k registros
-            # category_cols = arreglo con las columnas categoricas
-            # nc = columna numerica actual a medida se recorre el ciclo de las columnas numericas
             dfn = get_numeric_column_simulated(simulated, simulation_extended, category_cols, nc) 
 
-            # Combina el dataframe actual de final_simulation con el dataframe que se va generando a medida recorra el ciclo
-            # Los combina por sus indices (Tomando en cuenta que los indices son unicos)
             final_simulation = pd.merge(
                 final_simulation
                 , dfn.loc[:,[nc]]
