@@ -1,0 +1,4 @@
+Numero de cuenta: 20201003545
+Nombre: Carlos Reyniery Rubio Dominguez
+Repositorio: https://github.com/Reyniery-Carlitos/Teoria-de-simulacion.git
+ID ultimo commit:  088f735c97b484671c3344cb4a31f6d48a107b85
